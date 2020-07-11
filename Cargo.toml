@@ -1,0 +1,9 @@
+[package]
+name = "rusty-conway"
+version = "0.1.0"
+authors = ["Nick Anthony <Ilithium@protonmail.com>"]
+edition = "2018"
+
+[dependencies]
+ggez = "0.5"
+rand = "0.7.3"
