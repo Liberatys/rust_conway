@@ -31,13 +31,11 @@ impl Cell {
     pub fn new_state(old_state: bool, sur_cells: Vec<bool>) -> bool {
         let truth_count = sur_cells.iter().filter(|&n| *n == true).count();
         if old_state {
-            if truth_count < 2 {
-                false
-            } else if truth_count == 2 || truth_count == 3 {
-                true
-            } else {
-                false
-            }
+            return match truth_count {
+                1 | 2 => false,
+                2..=3 => true,
+                _ => false,
+            };
         } else {
             if truth_count == 3 {
                 true
@@ -78,10 +76,6 @@ impl Grid {
 
     pub fn get_cells(&self) -> Vec<Vec<bool>> {
         return self.cells.clone();
-    }
-
-    pub fn get_cell_value(&self, x: usize, y: usize) -> bool {
-        return self.cells[y][x];
     }
 
     pub fn get_sur_cells(&self, x: usize, y: usize) -> Vec<bool> {
